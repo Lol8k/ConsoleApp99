@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DbWrapper.Core</name>
+    </assembly>
+    <members>
+        <member name="T:DbWrapper.Core.ColumnFieldAttribute">
+            <summary>
+            Атрибут для привязки свойства класса к колонке в базе данных
+            </summary>
+        </member>
+        <member name="T:DbWrapper.Core.DbFactory">
+            <summary>
+            Фабрика для обьектов <see cref="T:DbWrapper.Core.DbInstance"/> и <see cref="T:DbWrapper.Core.QueryBuilder"/>
+            </summary>
+        </member>
+        <member name="M:DbWrapper.Core.DbFactory.CreateInstance(DbWrapper.Core.DbType)">
+            <summary>
+            Создает новый экземпляр <see cref="T:DbWrapper.Core.DbInstance"/> на основе <see cref="T:DbWrapper.Core.DbType"/>
+            </summary>
+            <param name="dbType">Тип БД</param>
+            <returns><see cref="T:DbWrapper.Core.DbInstance"/></returns>
+        </member>
+        <member name="M:DbWrapper.Core.DbFactory.CreateBuilder(DbWrapper.Core.DbType)">
+            <summary>
+            Создает новый экземпляр <see cref="T:DbWrapper.Core.QueryBuilder"/> на основе <see cref="T:DbWrapper.Core.DbType"/>
+            </summary>
+            <param name="dbType"></param>
+            <returns><see cref="T:DbWrapper.Core.QueryBuilder"/></returns>
+        </member>
+        <member name="T:DbWrapper.Core.DbInstance">
+            <summary>
+            Объект для работы с БД
+            </summary>
+        </member>
+        <member name="P:DbWrapper.Core.DbInstance.dbType">
+            <summary>
+            Тип БД
+            </summary>
+        </member>
+        <member name="M:DbWrapper.Core.DbInstance.SetConnectionParams(System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Устанавливает данные для подключения к БД
+            </summary>
+            <param name="dbName">Имя БД</param>
+            <param name="dbHost">Хост</param>
+            <param name="dbPort">Порт</param>
+            <param name="user">Пользователь</param>
+            <param name="password">Пароль</param>
+        </member>
+        <member name="M:DbWrapper.Core.DbInstance.TestConnection">
+            <summary>
+            Выполняет проверку подключения к БД
+            </summary>
+            <returns><see cref="T:DbWrapper.Core.Result"/></returns>
+        </member>
+        <member name="M:DbWrapper.Core.DbInstance.TestConnectionAsync(System.Threading.CancellationToken)">
+            <summary>
+            Выполняет проверку подключения к БД асинхронно
+            </summary>
+            <returns><see cref="T:DbWrapper.Core.Result"/></returns>
+        </member>
+        <member name="M:DbWrapper.Core.DbInstance.ExecuteCommand(System.String)">
+            <summary>
+            Выполняет команду
+            </summary>
+            <param name="command">Команда</param>
+            <returns><see cref="T:DbWrapper.Core.QueryResult"/></returns>
+        </member>
+        <member name="M:DbWrapper.Core.DbInstance.ExecuteCommandAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Выполняет команду асинхронно
+            </summary>
+            <param name="command">Команда</param>
+            <returns><see cref="T:DbWrapper.Core.QueryResult"/></returns>
+        </member>
+        <member name="M:DbWrapper.Core.DbInstance.ExecuteTransaction(System.String[])">
+            <summary>
+            Выполняет транзакцию
+            </summary>
+            <param name="commands">Список команд</param>
+            <returns><see cref="T:DbWrapper.Core.QueryResult"/></returns>
+        </member>
+        <member name="M:DbWrapper.Core.DbInstance.ExecuteTransactionAsync(System.String[],System.Threading.CancellationToken)">
+            <summary>
+            Выполняет транзакцию асинхронно
+            </summary>
+            <param name="commands">Список команд</param>
+            <returns><see cref="T:DbWrapper.Core.QueryResult"/></returns>
+        </member>
+        <member name="T:DbWrapper.Core.DbType">
+            <summary>
+            Тип БД
+            </summary>
+        </member>
+        <member name="F:DbWrapper.Core.DbType.MySql">
+            <summary>
+            MySql база данных
+            </summary>
+        </member>
+        <member name="F:DbWrapper.Core.DbType.Postgre">
+            <summary>
+            PostgreSql база данных
+            </summary>
+        </member>
+        <member name="M:DbWrapper.Core.IQueryBuilderExt.ExecuteCommand(DbWrapper.Core.QueryBuilder)">
+            <summary>
+            Выполняет команду из <see cref="T:DbWrapper.Core.QueryBuilder"/>
+            </summary>
+            <param name="builder">Команда</param>
+            <returns><see cref="T:DbWrapper.Core.QueryResult"/></returns>
+        </member>
+        <member name="M:DbWrapper.Core.IQueryBuilderExt.ExecuteCommandAsync(DbWrapper.Core.QueryBuilder,System.Threading.CancellationToken)">
+            <summary>
+            Выполняет команду из <see cref="T:DbWrapper.Core.QueryBuilder"/> асинхронно
+            </summary>
+            <param name="builder">Команда</param>
+            <returns><see cref="T:DbWrapper.Core.QueryResult"/></returns>
+        </member>
+        <member name="M:DbWrapper.Core.IQueryBuilderExt.ExecuteTransaction(DbWrapper.Core.QueryBuilder[])">
+            <summary>
+            Выполняет транзакцию 
+            </summary>
+            <param name="builders">Список команд типа <see cref="T:DbWrapper.Core.QueryBuilder"/></param>
+            <returns><see cref="T:DbWrapper.Core.QueryResult"/></returns>
+        </member>
+        <member name="M:DbWrapper.Core.IQueryBuilderExt.ExecuteTransactionAsync(DbWrapper.Core.QueryBuilder[],System.Threading.CancellationToken)">
+            <summary>
+            Выполняет транзакцию асинхронно
+            </summary>
+            <param name="builders">Список команд типа <see cref="T:DbWrapper.Core.QueryBuilder"/></param>
+            <returns><see cref="T:DbWrapper.Core.QueryResult"/></returns>
+        </member>
+        <member name="T:DbWrapper.Core.MySqlDb">
+            <summary>
+            Реализация <see cref="T:DbWrapper.Core.DbInstance"/> для базы данных MySql
+            </summary>
+        </member>
+        <member name="T:DbWrapper.Core.MySqlQueryBuilder">
+            <summary>
+            Реализация <see cref="T:DbWrapper.Core.QueryBuilder"/> для MySql 
+            </summary>
+        </member>
+        <member name="T:DbWrapper.Core.PostgreDb">
+            <summary>
+            Реализация <see cref="T:DbWrapper.Core.DbInstance"/> для базы данных PostgreSql
+            </summary>
+        </member>
+        <member name="T:DbWrapper.Core.PostgreQueryBuilder">
+            <summary>
+            Реализация <see cref="T:DbWrapper.Core.QueryBuilder"/> для PostgreSql 
+            </summary>
+        </member>
+        <member name="T:DbWrapper.Core.QueryBuilder">
+            <summary>
+            Конструктор SQL запросов
+            </summary>
+        </member>
+        <member name="F:DbWrapper.Core.QueryBuilder.ALL">
+            <summary>
+            Все записи ( используется в <see cref="M:DbWrapper.Core.QueryBuilder.OffsetLimit(System.Int32,System.Int32)"/> ) для limit
+            </summary>
+        </member>
+        <member name="T:DbWrapper.Core.QueryResult">
+            <summary>
+            Объект для хранения результата запроса ( <see cref="T:DbWrapper.Core.Result"/> ) с данными
+            </summary>
+        </member>
+        <member name="P:DbWrapper.Core.QueryResult.Columns">
+            <summary>
+            Коллекция содержащая навзания колонок
+            </summary>
+        </member>
+        <member name="P:DbWrapper.Core.QueryResult.ColumnTypes">
+            <summary>
+            Коллекция содержащая типы колонок
+            </summary>
+        </member>
+        <member name="P:DbWrapper.Core.QueryResult.Rows">
+            <summary>
+            Коллекция содержащая строки с данными ввиде <see cref="T:System.Object"/>[]
+            </summary>
+        </member>
+        <member name="P:DbWrapper.Core.QueryResult.RowsAffected">
+            <summary>
+            Для SELECT - кол-во строк в ответе,
+            для INSERT, UPDATE, DELETE - кол-во затронутых строк
+            </summary>
+        </member>
+        <member name="M:DbWrapper.Core.QueryResult.ToList``1">
+            <summary>
+            Преобразует результат запроса в список объектов указанного типа.
+            Сопоставление идет по ColumnFieldAttribute или по имени свойства (case-insensitive).
+            </summary>
+            <typeparam name="T">Тип объекта (должен иметь пустой конструктор)</typeparam>
+            <returns>Список объектов</returns>
+        </member>
+        <member name="M:DbWrapper.Core.QueryResult.SetPropertyValue(System.Object,System.Reflection.PropertyInfo,System.Object)">
+            <summary>
+            Безопасная установка значения свойства с конвертацией типов
+            </summary>
+        </member>
+        <member name="M:DbWrapper.Core.QueryResult.GetValue(System.String,System.Int32)">
+            <summary>
+            Получает значение из опред колонки и строки
+            </summary>
+            <param name="column">Название колонки</param>
+            <param name="rowIndex">Номер строки</param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.Core.QueryResult.GetValuesDistinct(System.String)">
+            <summary>
+            Формирует из значений колонки список
+            </summary>
+            <param name="column">Название колонки</param>
+            <returns></returns>
+        </member>
+        <member name="T:DbWrapper.Core.Result">
+            <summary>
+            Объект для хранения результата запроса без данных
+            </summary>
+        </member>
+        <member name="P:DbWrapper.Core.Result.Success">
+            <summary>
+            True - если успешно, False - если было исключение
+            </summary>
+        </member>
+        <member name="P:DbWrapper.Core.Result.ErrorMessage">
+            <summary>
+            Сообщение из ошибки
+            </summary>
+        </member>
+        <member name="P:DbWrapper.Core.Result.Exception">
+            <summary>
+            Оригинальный обьект исключения
+            </summary>
+        </member>
+    </members>
+</doc>

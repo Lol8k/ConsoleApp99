@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DbWrapper.UI</name>
+    </assembly>
+    <members>
+        <member name="T:DbWrapper.UI.CascadeDeleteArgs">
+            <summary>
+            Конфигурация для каскадного удаления
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.CascadeDeleteArgs.TableName">
+            <summary>
+            Имя дочерней таблицы (откуда удалять каскадно)
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.CascadeDeleteArgs.PrimaryKey">
+            <summary>
+            Первичный ключ дочерней таблицы (используется для дальнейшей рекурсии)
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.CascadeDeleteArgs.RefersTo">
+            <summary>
+            Колонка внешнего ключа в дочерней таблице (которая ссылается на родителя)
+            </summary>
+        </member>
+        <member name="T:DbWrapper.UI.DataGridViewAdapter">
+            <summary>
+            Адаптер данных для DataGridView
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.DataGridViewAdapter.ErrorColor">
+            <summary>
+            Цвет фона и выделения если значение в ячейек не прошло валидацию
+            </summary>
+        </member>
+        <member name="P:DbWrapper.UI.DataGridViewAdapter.TableArgs">
+            <summary>
+            Параметры таблицы
+            </summary>
+        </member>
+        <member name="E:DbWrapper.UI.DataGridViewAdapter.OnRowSelected">
+            <summary>
+            Событие срабатывает в момент выделения строки
+            </summary>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.#ctor(System.Windows.Forms.DataGridView)">
+            <summary>
+            Инициализирует адаптер для указаного <see cref="T:System.Windows.Forms.DataGridView"/>
+            </summary>
+            <param name="dataGridView">Обьект <see cref="T:System.Windows.Forms.DataGridView"/></param>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.GetValues(System.Int32)">
+            <summary>
+            Возвращает значение строки ввиде object[]
+            </summary>
+            <param name="rowIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.SetValues(System.Int32,System.Object[])">
+            <summary>
+            Устанавливает значения для строки   
+            </summary>
+            <param name="rowIndex"></param>
+            <param name="values"></param>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.AddFilter(System.String,System.Windows.Forms.TextBox,System.Func{DbWrapper.UI.FilterArgs,System.Boolean})">
+            <summary>
+            Добавляет новый фильтр для колонки
+            </summary>
+            <param name="column">Название колонки</param>
+            <param name="source">Текстовое поле</param>
+            <param name="customFilter">Функция фильтра</param>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.RemoveFilter(System.String)">
+            <summary>
+            Удаляет фильтр по названию колонки
+            </summary>
+            <param name="column">Название колонки</param>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.ClearFilters">
+            <summary>
+            Удаляет все фильтры со всех колонок
+            </summary>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.AddValidator(System.String,System.Func{DbWrapper.UI.ValidArgs,System.Boolean})">
+            <summary>
+            Добавляет метод для проверки к колонке
+            </summary>
+            <param name="column">Название колонки</param>
+            <param name="validator">Функция проверки</param>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.RemoveValidator(System.String)">
+            <summary>
+            Удаляет метод для проверки у указанной колонки
+            </summary>
+            <param name="column"></param>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.ClearValidators">
+            <summary>
+            Удаляет все методы проверки для всех колонок
+            </summary>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.SetData(DbWrapper.Core.QueryResult,DbWrapper.UI.TableArgs,System.Boolean)">
+            <summary>
+            Устанавливает данные для отображения
+            </summary>
+            <param name="result">Результат запроса с данными из БД</param>
+            <param name="args">Параметры таблицы</param>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.SyncronizeData(DbWrapper.Core.DbInstance)">
+            <summary>
+            Выполняет транзакцию, которая удаляет, изменяет и добавляет строки в БД в соотвествии с данными в DataGridView
+            </summary>
+            <param name="db">Обьект DbInstanse</param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.SyncronizeDataAsync(DbWrapper.Core.DbInstance)">
+            <summary>
+            Выполняет транзакцию, которая удаляет, изменяет и добавляет строки в БД в соотвествии с данными в DataGridView асинхронно
+            </summary>
+            <param name="db">Обьект DbInstanse</param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.ApplyFilters">
+            <summary>
+            Применяет фильтры к данными
+            </summary>
+        </member>
+        <member name="M:DbWrapper.UI.DataGridViewAdapter.AddCascadeDelete(System.String,DbWrapper.UI.CascadeDeleteArgs)">
+            <summary>
+            Добавляет правило каскадного удаления.
+            </summary>
+            <param name="parentTable">Имя родительской таблицы (например "companies")</param>
+            <param name="cascade">Правило удаления для дочерней таблицы</param>
+        </member>
+        <member name="T:DbWrapper.UI.FilterArgs">
+            <summary>
+            Параметры для фильтрации
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.FilterArgs.FilterText">
+            <summary>
+            Текст из поля
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.FilterArgs.CellValue">
+            <summary>
+            Значение ячейки
+            </summary>
+        </member>
+        <member name="T:DbWrapper.UI.Filters">
+            <summary>
+            Класс с готовыми фильтрами
+            </summary>
+        </member>
+        <member name="M:DbWrapper.UI.Filters.StringMatch(DbWrapper.UI.FilterArgs)">
+            <summary>
+            Срабатывает если текст из поля полностью соответствует значению ячейки
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Filters.StringContains(DbWrapper.UI.FilterArgs)">
+            <summary>
+            Срабатывает если текст из поля полностью или частичнео соответствует значению ячейки
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Filters.StringStartsWith(DbWrapper.UI.FilterArgs)">
+            <summary>
+            Срабатывает если значение из ячейки начинается с со строки соотвествующей тексту из поля
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Filters.NumberEquals(DbWrapper.UI.FilterArgs)">
+            <summary>
+            Срабатывает если числовое значение из поля соотвествует значению из ячейки
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Filters.DoubleEquals(DbWrapper.UI.FilterArgs)">
+            <summary>
+            Срабатывает если значение с плавающей точкой из поля соотвествует значению из ячейки
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DbWrapper.UI.TableArgs">
+            <summary>
+            Параметры таблицы
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.TableArgs.TableName">
+            <summary>
+            Имя таблицы
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.TableArgs.PrimaryKey">
+            <summary>
+            Первичный ключ
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.TableArgs.PrimaryKeyColumnVisible">
+            <summary>
+            Видимость колонки с первичным ключом
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.TableArgs.ReadOnlyColumns">
+            <summary>
+            Колонки только для чтения
+            </summary>
+        </member>
+        <member name="F:DbWrapper.UI.TableArgs.ColumnDisplayNames">
+            <summary>
+            Отображаемые имена колонок - по умолчания имена берутся ил результата запроса
+            </summary>
+        </member>
+        <member name="T:DbWrapper.UI.ValidArgs">
+            <summary>
+            Контекст для проверки поля
+            </summary>
+        </member>
+        <member name="P:DbWrapper.UI.ValidArgs.Value">
+            <summary>
+            Значение поля
+            </summary>
+        </member>
+        <member name="P:DbWrapper.UI.ValidArgs.DataGridView">
+            <summary>
+            Экземпляр DataGridView
+            </summary>
+        </member>
+        <member name="P:DbWrapper.UI.ValidArgs.RowIndex">
+            <summary>
+            Индекс строки
+            </summary>
+        </member>
+        <member name="P:DbWrapper.UI.ValidArgs.ColumnIndex">
+            <summary>
+            Индекс колонки
+            </summary>
+        </member>
+        <member name="T:DbWrapper.UI.Validators">
+            <summary>
+            Класс с готовыми валидаторами
+            </summary>
+        </member>
+        <member name="M:DbWrapper.UI.Validators.IsString(DbWrapper.UI.ValidArgs)">
+            <summary>
+            Явлеятся ли введенное значение строкой
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Validators.IsNumeric(DbWrapper.UI.ValidArgs)">
+            <summary>
+            Явлеятся ли введенное значение числом
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Validators.IntRange(System.Int32,System.Int32)">
+            <summary>
+            Явлеятся ли введенное значение числом в диапазоне от min до max включительно
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Validators.RegexPattern(System.String)">
+            <summary>
+            Соответствует ли введенное значение шаблону Regex
+            </summary>
+            <param name="pattern"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Validators.IsBoolean(DbWrapper.UI.ValidArgs)">
+            <summary>
+            Явлеятся ли введенное значение Bool (true,false)
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Validators.And(System.Func{DbWrapper.UI.ValidArgs,System.Boolean}[])">
+            <summary>
+            Совмещает несколько фильтров вместе через And
+            </summary>
+            <param name="validators"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Validators.Or(System.Func{DbWrapper.UI.ValidArgs,System.Boolean}[])">
+            <summary>
+            Совмещает несколько фильтров вместе через Or
+            </summary>
+            <param name="validators"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbWrapper.UI.Validators.Not(System.Func{DbWrapper.UI.ValidArgs,System.Boolean})">
+            <summary>
+            Инвертирует фильтр 
+            </summary>
+            <param name="validators"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
