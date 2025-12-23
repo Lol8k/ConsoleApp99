@@ -1,5 +1,4 @@
 using DbWrapper.UI.ORM;
-
 namespace ConsoleApp99
 {
     public partial class AuthForm : Form
@@ -11,8 +10,8 @@ namespace ConsoleApp99
             GlobalStyle.Apply(this);
             AppState.Set("auth_form", this);
             roleBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            roleBox.Items.Add("Пользователь");
-            roleBox.Items.Add("Администратор");
+            roleBox.Items.Add("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ");
+            roleBox.Items.Add("РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ");
             roleBox.SelectedIndex = 0;
             errorBox.Text = string.Empty;
         }
@@ -23,19 +22,19 @@ namespace ConsoleApp99
             if (string.IsNullOrEmpty(loginBox.Text))
             {
                 errorBox.ForeColor = Color.Red;
-                errorBox.Text = "Поле 'Логин' не может быть пустым";
+                errorBox.Text = "РџРѕР»Рµ 'Р›РѕРіРёРЅ' РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј";
                 return;
             }
             if (string.IsNullOrEmpty(passwordBox.Text))
             {
                 errorBox.ForeColor = Color.Red;
-                errorBox.Text = "Поле 'Пароль' не может быть пустым";
+                errorBox.Text = "РџРѕР»Рµ 'РџР°СЂРѕР»СЊ' РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј";
                 return;
             }
             if (loginBox.Text.Equals("root") && passwordBox.Text.Equals("root"))
             {
                 errorBox.ForeColor = Color.Green;
-                errorBox.Text = "Успешно";
+                errorBox.Text = "РЈСЃРїРµС€РЅРѕ";
                 AppState.Set("role", roleBox.SelectedItem.ToString());
                 TripsView tripsView = new TripsView();
                 AppState.Set("trips_view_form", tripsView);
@@ -45,7 +44,7 @@ namespace ConsoleApp99
             else
             {
                 errorBox.ForeColor = Color.Red;
-                errorBox.Text = "Пользователь не найден";
+                errorBox.Text = "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµ РЅР°Р№РґРµРЅ";
                 return;
             }
         }
