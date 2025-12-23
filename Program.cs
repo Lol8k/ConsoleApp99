@@ -9,6 +9,7 @@ namespace ConsoleApp99
         [STAThread]
         static void Main()
         {
+            GlobalStyle.ApplyStyle("#FFFFFF", "#7FFF00", "#00FA9A");
             DbInstance db = new PostgreDb();
             db.SetConnectionParams("flight_system", "localhost", 5432, "postgres", "postgres");
             AppState.SetDbInstance(db);

@@ -12,6 +12,7 @@ namespace ConsoleApp99
         {
             InitializeComponent();
             CenterToScreen();
+            GlobalStyle.Apply(this);
             adapter = new DataGridViewAdapter2<Ticket>(dataGridView1);
             columns =
             [

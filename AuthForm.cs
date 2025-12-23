@@ -7,6 +7,8 @@ namespace ConsoleApp99
         public AuthForm()
         {
             InitializeComponent();
+            CenterToScreen();
+            GlobalStyle.Apply(this);
             AppState.Set("auth_form", this);
             roleBox.DropDownStyle = ComboBoxStyle.DropDownList;
             roleBox.Items.Add("Пользователь");

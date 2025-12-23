@@ -13,6 +13,7 @@ namespace ConsoleApp99
         {
             InitializeComponent();
             CenterToScreen();
+            GlobalStyle.Apply(this);
             string role = AppState.Get<string>("role");
             if (role.Equals("Пользователь"))
             {
@@ -20,6 +21,7 @@ namespace ConsoleApp99
                 viewPassangers.Visible = false;
             }
             adapter = new DataGridViewAdapter2<Trip>(dataGridView1);
+
             columns =
             [
                 new GridColumn("Id", "Номер"),
@@ -62,6 +64,7 @@ namespace ConsoleApp99
             var companies = AppState.GetContext().Set<Company>().ToList();
             companies.ForEach(company => companyBox.Items.Add(company.Name));
             companyBox.SelectedIndex = 0;
+
             companyBox.SelectedIndexChanged += (sender, e) =>
             {
                 int index = companyBox.SelectedIndex;
