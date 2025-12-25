@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DbWrapper.UI" Version="1.2.5" />
+    <PackageReference Include="DbWrapper.UI" Version="1.2.6" />
   </ItemGroup>
 
   <ItemGroup>
