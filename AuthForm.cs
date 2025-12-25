@@ -1,4 +1,5 @@
 using DbWrapper.UI.ORM;
+
 namespace ConsoleApp99
 {
     public partial class AuthForm : Form
