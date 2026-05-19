@@ -15,6 +15,7 @@ namespace ConsoleApp99
             roleBox.Items.Add("Администратор");
             roleBox.SelectedIndex = 0;
             errorBox.Text = string.Empty;
+            
         }
 
         private void authButton_Click(object sender, EventArgs e)
